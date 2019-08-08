@@ -45,4 +45,4 @@ steps:
     tag: '0.1.0.$(Build.BuildNumber)'
     title: '0.1.0.$(Build.BuildNumber)'
     releaseNotes: ':rocket: $(Build.BuildNumber)'
-    assets: './src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish/*'
+    assets: '$(Build.ArtifactStagingDirectory)/src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish/*'
