@@ -10,7 +10,7 @@ namespace DevopsHelloWorld.Tests
         {
             var myClass = new MyClass();
             var data = myClass.GetHelloWorld();
-            Assert.Equal(data, "Hello, World!");
+            Assert.Equal("Hello, World!", data);
         }
     }
 }
