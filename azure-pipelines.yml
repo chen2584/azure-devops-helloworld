@@ -41,7 +41,7 @@ steps:
     gitHubConnection: 'github.com'
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: 'auto'
+    tagSource: 'manual'
     tag: '$(Build.BuildNumber)'
     title: '(:fire:) $(Build.BuildNumber)'
     assets: '$(Build.ArtifactStagingDirectory)/src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish'
