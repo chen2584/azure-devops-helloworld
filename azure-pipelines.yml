@@ -44,4 +44,5 @@ steps:
     tagSource: 'manual'
     tag: '0.1.0.$(Build.BuildNumber)'
     title: '0.1.0.$(Build.BuildNumber)'
-    assets: 'src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish/*'
+    releaseNotes: ':rocket: $(Build.BuildNumber)'
+    assets: './src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish/*'
