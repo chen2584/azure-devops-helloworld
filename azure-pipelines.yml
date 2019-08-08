@@ -34,6 +34,42 @@ steps:
     projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
     arguments: '-c Release'
 
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: dotnet tool install -g Cake.Tool
+  displayName: 'Install Cake'
+
+- script: ~/.dotnet/tools/dotnet-cake 
+  displayName: 'Execute Cake Build'
+
+- script: |
+    dotnet restore src/DevopsHelloWorld
+  displayName: 'Restore Project'
+
+- script: dotnet restore src/DevopsHelloWorld.Tests
+  displayName: 'Restore Unit Test'
+
+- script: dotnet test src/DevopsHelloWorld.Tests
+  displayName: 'Execute Unit Test'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Project'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
+    arguments: '-c Release'
+
 - task: GitHubRelease@0
   displayName: 'Github Release (Create)'
   inputs:
@@ -42,4 +78,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'auto'
+    tag: '$(Build.BuildNumber)'
+    title: '(:fire:) $(Build.BuildNumber)'
     assets: '$(Build.ArtifactStagingDirectory)/src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish'
