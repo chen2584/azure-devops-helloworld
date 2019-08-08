@@ -13,9 +13,6 @@ steps:
 - script: dotnet tool install -g Cake.Tool
   displayName: 'Install Cake'
 
-- script: ~/.dotnet/tools/dotnet-cake 
-  displayName: 'Execute Cake Build'
-
 - script: |
     dotnet restore src/DevopsHelloWorld
   displayName: 'Restore Project'
@@ -26,13 +23,8 @@ steps:
 - script: dotnet test src/DevopsHelloWorld.Tests
   displayName: 'Execute Unit Test'
 
-- task: DotNetCoreCLI@2
+- script: ~/.dotnet/tools/dotnet-cake 
   displayName: 'Publish Project'
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
-    arguments: '-c Release'
 
 - task: GitHubRelease@0
   displayName: 'Github Release (Create)'
@@ -45,4 +37,4 @@ steps:
     tag: '0.1.0.$(Build.BuildNumber)'
     title: '0.1.0.$(Build.BuildNumber)'
     releaseNotes: ':rocket: $(Build.BuildNumber)'
-    assets: '.publish/*'
+    assets: 'publish.zip'

@@ -1,7 +1,7 @@
 var projectFile = @"src/DevopsHelloWorld/DevopsHelloWorld.csproj";
+var publishPath = ".publish";
 
 Task("Publish").Does(() =>{
-  var publishPath = ".publish";
 
   DotNetCoreClean(projectFile);
   CleanDirectory(publishPath);
@@ -11,5 +11,10 @@ Task("Publish").Does(() =>{
   });
 });
 
-var target = Argument("target", "Publish");
+Task("Publish-Zip").IsDependentOn("Publish").Does(() =>{
+  var files = GetFiles(".publish/*");
+  Zip("./", "publish.zip", files);
+});
+
+var target = Argument("target", "Publish-Zip");
 RunTarget(target);
