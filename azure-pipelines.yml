@@ -31,4 +31,4 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
-    arguments: '-c Release --output '
+    arguments: '-c Release'
