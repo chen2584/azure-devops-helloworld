@@ -42,6 +42,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'manual'
-    tag: '$(Build.BuildNumber)'
-    title: '(:fire:) $(Build.BuildNumber)'
+    tag: '0.1.0.$(Build.BuildNumber)'
+    title: '0.1.0.$(Build.BuildNumber)'
     assets: '$(Build.ArtifactStagingDirectory)/src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish'
