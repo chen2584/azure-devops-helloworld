@@ -1,4 +1,4 @@
-var projectFile = @"src\SocWebApi\SocWebApi.csproj";
+var projectFile = @"src/DevopsHelloWorld/DevopsHelloWorld.csproj";
 
 Task("Publish").Does(() =>{
   var publishPath = ".publish";
