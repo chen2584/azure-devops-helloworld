@@ -14,9 +14,18 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    dotnet restore src/DevopsHelloWorld
+  displayName: 'Restore Project'
+
+- script: dotnet restore src/DevopsHelloWorld.Tests
+  displayName: 'Restore Unit Test'
 
 - script: dotnet test src/DevopsHelloWorld.Tests
   displayName: 'Execute Unit Test'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Project'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '-c Release src/DevopsHelloWorld --output ../../publish'
