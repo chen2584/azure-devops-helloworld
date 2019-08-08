@@ -32,3 +32,11 @@ steps:
     publishWebProjects: false
     projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
     arguments: '-c Release'
+
+- task: GitHubRelease@0
+  inputs:
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'auto'
+    assets: '$(Build.ArtifactStagingDirectory)/src/DevopsHelloWorld/bin/Release/netcoreapp2.2/publish'
