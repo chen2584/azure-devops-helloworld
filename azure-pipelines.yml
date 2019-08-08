@@ -24,8 +24,8 @@ steps:
   displayName: 'Execute Unit Test'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish Project'
   inputs:
     command: 'publish'
     publishWebProjects: false
+    projects: 'src/DevopsHelloWorld/DevopsHelloWorld.csproj'
     arguments: '-c Release src/DevopsHelloWorld'
